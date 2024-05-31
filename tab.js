@@ -10,7 +10,17 @@
   };
   init();
 
+  // クリックイベント
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log('Clicked!');
+  };
 
+  let index = 0;
+  while(index < $nav.length) {
+    $nav[index].addEventListener('click', (e) => handleClick(e));
+    index++;
+  }
 
 
 
