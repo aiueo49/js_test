@@ -1,22 +1,45 @@
-const question = "ゲーム市場、最も売れたゲーム機は何？";
-const answers = [
-  "スーパーファミコン",
-  "プレイステーション2",
-  "ニンテンドースイッチ",
-  "ニンテンドーDS"
+const quiz = [
+  {
+    question: 'ゲーム市場、最も売れたゲーム機は何？',
+    answers: [
+      "スーパーファミコン",
+      "プレイステーション2",
+      "ニンテンドースイッチ",
+      "ニンテンドーDS"
+    ],
+    correct: "ニンテンドーDS"
+  }, {
+    question: '任天堂が発売した家庭用ゲーム機は次のうちどれ？',
+    answers: [
+      "Xbox",
+      "プレイステーション",
+      "スーパーファミコン",
+      "メガドライブ"
+    ],
+    correct: "スーパーファミコン"
+  }, {
+    question: 'ファイナルファンタジーⅦの主人公の名前は？',
+    answers: [
+      "クラウド",
+      "セフィロス",
+      "ティーダ",
+      "ユウナ"],
+    correct: "クラウド"
+  }
 ];
 
-const correct = "ニンテンドーDS";
+const quizLength = quiz.length;
+let quizIndex = 0;
 
 const $button = document.getElementsByTagName("button");
 const buttonLength = $button.length;
 
 // 問題文と選択肢を定義
 const setupQuiz = () => {
-  document.getElementById("js-question").textContent = question;
+  document.getElementById("js-question").textContent = quiz[quizIndex].question;
   let buttonIndex = 0;
   while (buttonIndex < buttonLength) {
-    $button[buttonIndex].textContent = answers[buttonIndex];
+    $button[buttonIndex].textContent = quiz[quizIndex].answers[buttonIndex];
     buttonIndex++;
   }
 };
@@ -24,10 +47,18 @@ const setupQuiz = () => {
 setupQuiz();
 
 const clickHandler = (e) => {
-  if (correct === e.target.textContent) {
+  if (quiz[quizIndex].correct === e.target.textContent) {
     window.alert("正解！");
   } else {
     window.alert("不正解！");
+  }
+
+  quizIndex++;
+
+  if (quizIndex < quizLength) {
+    setupQuiz();
+  } else {
+    window.alert("終了！");
   }
 };
 
