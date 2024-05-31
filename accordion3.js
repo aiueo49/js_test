@@ -2,15 +2,13 @@
 
   class Accordion {
     constructor(obj) {
-
-      console.log('obj:', obj);
-      const $elm = document.querySelector('#js-accordion');
-      const $trigger = $elm.getElementsByTagName('a');
+      const $elm = document.querySelector(obj.hookName);
+      const $trigger = $elm.getElementsByTagName(obj.tagName);
     
       const triggerLen = $trigger.length;
       let index = 0;
       while (index < triggerLen) {
-        $trigger[index].addEventListener('click', (e) => clickHandler(e));
+        $trigger[index].addEventListener('click', (e) => this.clickHandler(e));
         index++;
       }
     }
@@ -36,7 +34,10 @@
     tagName: 'p'
   });
 
-
+  const dummyAccordion = new Accordion({
+    hookName: '#js-accordion',
+    tagName: 'a'
+  });
 
 
 
