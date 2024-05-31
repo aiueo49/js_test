@@ -13,7 +13,15 @@
   // クリックイベント
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('Clicked!');
+
+    // クリックされたnavとそのdataを取得
+    const $this = e.target;
+    const targetVal = $this.dataset.nav;
+
+    // 対象コンテンツをアクティブ化する
+    $tab.querySelectorAll('[data-content="' + targetVal + '"]')[0].style.display = 'block';
+
+
   };
 
   let index = 0;
