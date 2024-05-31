@@ -18,8 +18,17 @@
     const $this = e.target;
     const targetVal = $this.dataset.nav;
 
+    // 対象外のnav, content全て一旦リセットする
+    let index = 0;
+    while(index < $nav.length) {
+      $content[index].style.display = 'none';
+      $nav[index].classList.remove('is-active');
+      index++;
+    }
+
     // 対象コンテンツをアクティブ化する
     $tab.querySelectorAll('[data-content="' + targetVal + '"]')[0].style.display = 'block';
+    $nav[targetVal].classList.add('is-active');
 
 
   };
